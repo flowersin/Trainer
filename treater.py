@@ -1,4 +1,5 @@
 import serial # For communicating with Arduino
+global resonse
 response = "Fuck my life"
 
 
@@ -39,7 +40,7 @@ class Treater:
         finally:
             if 'ser' in locals() and ser.is_open:
                 ser.close()
-            print("response")
+            print(response)
             return response
 
         print("serial console opened")
@@ -48,7 +49,7 @@ class Treater:
         response = "Gave " + str(ser.readline()) + " treats" # Read response
 
         ser.close() # Close connection
-        print("response")
+        print(response)
         return response
 
         
