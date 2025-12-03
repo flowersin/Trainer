@@ -28,14 +28,15 @@ class Treater:
         try:
             ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1) # Open serial connection
         except serial.SerialException as e:
-            return f"Serial port error: {e}"
+            response = f"Serial port error: {e}"
         except PermissionError:
-            return "Permission denied - check user permissions"
+            response = "Permission denied - check user permissions"
         except FileNotFoundError:
-            return "Port not found - verify device connection"
+            response = "Port not found - verify device connection"
         finally:
             if 'ser' in locals() and ser.is_open:
                 ser.close()
+            return response
 
         ser.write(size) # Send data
 
