@@ -1,0 +1,12 @@
+[Unit]
+Description=Ellie Trainer
+After=network.target
+
+[Service]
+ExecStart=/bin/bash /home/es/Trainer/service.sh
+Type=simple
+
+
+[Install]
+WantedBy=default.target
+RequiredBy=network.target
