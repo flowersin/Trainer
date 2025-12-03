@@ -1,5 +1,6 @@
-# Import os to retriever and write stats
-import os
+# Module to log training information
+
+import os # Import os to retriever and write stats
 import datetime # For date and time in log files
 
 class Logger:
