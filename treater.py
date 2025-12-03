@@ -1,4 +1,6 @@
 import serial # For communicating with Arduino
+response = "Fuck my life"
+
 
 class Treater:
     def __init__(self):
