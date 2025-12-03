@@ -1,4 +1,6 @@
 import serial # For communicating with Arduino
+import asyncio # For async/sleep
+
 global response
 response = "Fuck my life"
 
@@ -35,7 +37,7 @@ class Treater:
 
             ser.write(size) # Send data
 
-            delay(1000) # wait a bit
+            await asyncio.sleep(1000) # wait a bit
 
             waiting = ser.in_waiting # Check if we got a response
             if waiting > 0: # If we heard back...
