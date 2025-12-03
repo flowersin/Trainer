@@ -32,8 +32,18 @@ class Treater:
         try:
             ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1) # Open serial connection
             print("serial console opened")
+
             ser.write(size) # Send data
-            response = "Gave " + str(ser.readline()) + " treats" # Read response
+
+            delay(1000) # wait a bit
+
+            waiting = ser.in_waiting # Check if we got a response
+            if waiting > 0: # If we heard back...
+                data = ser.read(1)
+                response = "Gave " + str(data) + " treats" # Read response
+            else: # If we didn't...
+                response = "No Reply"
+    
         except serial.SerialException as e:
             response = f"Serial port error: {e}"
         except PermissionError:
