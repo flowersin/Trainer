@@ -1,5 +1,5 @@
 import serial # For communicating with Arduino
-global resonse
+global response
 response = "Fuck my life"
 
 
@@ -31,6 +31,9 @@ class Treater:
         size = int(value)
         try:
             ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1) # Open serial connection
+            print("serial console opened")
+            ser.write(size) # Send data
+            response = "Gave " + str(ser.readline()) + " treats" # Read response
         except serial.SerialException as e:
             response = f"Serial port error: {e}"
         except PermissionError:
@@ -42,15 +45,6 @@ class Treater:
                 ser.close()
             print(response)
             return response
-
-        print("serial console opened")
-        ser.write(size) # Send data
-
-        response = "Gave " + str(ser.readline()) + " treats" # Read response
-
-        ser.close() # Close connection
-        print(response)
-        return response
 
         
         
