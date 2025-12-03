@@ -23,6 +23,7 @@ class Treater:
         return self.send(3)
 
     def send(self, value):
+        print("attempting to send treat")
 
         size = int(value)
         try:
@@ -36,14 +37,16 @@ class Treater:
         finally:
             if 'ser' in locals() and ser.is_open:
                 ser.close()
+            print("response")
             return response
 
+        print("serial console opened")
         ser.write(size) # Send data
 
         response = "Gave " + str(ser.readline()) + " treats" # Read response
 
         ser.close() # Close connection
-
+        print("response")
         return response
 
         
