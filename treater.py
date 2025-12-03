@@ -26,7 +26,7 @@ class Treater:
 
         size = int(value)
         try:
-            ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1) # Open serial connection
+            ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1) # Open serial connection
         except serial.SerialException as e:
             return f"Serial port error: {e}"
         except PermissionError:
