@@ -24,10 +24,17 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='~', intents=intents)
 
 @bot.command()
-async def treat(ctx):
+async def treat(ctx, arg):
     caller = ctx.author # Gather command sender
-
-    reason = "small" # The "reason" code has become future ellie's problem...
+    match str(arg).lower():
+        case "small":
+            reason = "small"
+        case "medium":
+            reason = "small"
+        case "large":
+            reason = "large"
+        case _:
+            reason = "small"
 
     response = treatobj.treat(reason) # Send a treat via the treater object
     await ctx.send("@flowersin @" + caller + " " + response) # Send a response via discord
