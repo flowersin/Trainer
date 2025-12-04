@@ -1,5 +1,5 @@
 import serial # For communicating with Arduino
-import time.sleep # For async/sleep
+import time # For sleep
 
 global response
 response = "Fuck my life"
@@ -30,19 +30,21 @@ class Treater:
     def send(self, value):
         print("attempting to send treat")
 
-        size = int(value)
+        size = str(value).encode()
         try:
-            ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1) # Open serial connection
+            ser = serial.Serial('/dev/ttyACM0', 9600, timeout=100) # Open serial connection
+            time.sleep(2)
             print("serial console opened")
+            ser.reset_input_buffer()
+            print(size)
+            print(ser.write(size)) # Send data
+            ser.flush()
 
-            ser.write(size) # Send data
+            time.sleep(2) # wait a bit
 
-            time.sleep(1) # wait a bit
-
-            waiting = ser.in_waiting # Check if we got a response
-            if waiting > 0: # If we heard back...
-                data = ser.read(1)
-                response = "Gave " + str(data) + " treats" # Read response
+            if ser.in_waiting: # If we heard back...
+                data = ser.read(1).decode()
+                response = "Gave " + str(data) + " treat(s)" # Read response
             else: # If we didn't...
                 response = "No Reply"
     
