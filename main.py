@@ -33,6 +33,8 @@ async def treat(ctx, arg):
             reason = "small"
         case "large":
             reason = "large"
+        case "test":
+            reason = "test"
         case _:
             reason = "small"
 
