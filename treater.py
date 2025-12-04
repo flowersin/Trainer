@@ -17,6 +17,8 @@ class Treater:
                 return self.medium()
             case "large":
                 return self.large()
+            case "test":
+                return self.send(0)
     
     def small(self):
         return self.send(1)
@@ -28,6 +30,11 @@ class Treater:
         return self.send(3)
 
     def send(self, value):
+        if value <= 0:
+            return "No Treat Requested"
+        elif value > 3:
+            return "Too large of treat!"
+        
         print("attempting to send treat")
 
         size = str(value).encode()
