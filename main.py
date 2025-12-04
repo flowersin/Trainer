@@ -25,7 +25,7 @@ bot = commands.Bot(command_prefix='~', intents=intents)
 
 @bot.command()
 async def treat(ctx, arg):
-    caller = ctx.author # Gather command sender
+    caller = str(ctx.author) # Gather command sender
     match str(arg).lower():
         case "small":
             reason = "small"
