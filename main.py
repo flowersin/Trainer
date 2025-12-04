@@ -30,20 +30,7 @@ async def treat(ctx):
     reason = "small" # The "reason" code has become future ellie's problem...
 
     response = treatobj.treat(reason) # Send a treat via the treater object
-    await ctx.send(response) # Send a response via discord
+    await ctx.send("@flowersin @" + caller + " " + response) # Send a response via discord
     logger.create_entry(caller, response) # Create a log entry
-    
-
-@bot.command()
-async def warn(ctx):
-    await ctx.send("Kitty...")
-    caller = ctx.author
-    logger.create_entry(caller, "Warned")
-
-@bot.command()
-async def punish(ctx):
-    await ctx.send("Bad Kitty!")
-    caller = ctx.author
-    logger.create_entry(caller, "Punished")
 
 bot.run(token)
