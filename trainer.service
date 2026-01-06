@@ -3,7 +3,7 @@ Description=Ellie Trainer
 After=network.target
 
 [Service]
-ExecStart=/bin/bash /home/es/Trainer/service.sh
+ExecStart=/bin/bash /[CHANGE ME]/Trainer/service.sh
 Type=simple
 
 
